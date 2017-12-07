@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Text, View, TouchableHighLight, Image} from 'react-native';
+import {Text, View, TouchableHighlight, Image} from 'react-native';
 
-class LoginInButton extends Component {
+class LogInButton extends Component {
 
   constructor(props) {
     super(props);
@@ -10,7 +10,7 @@ class LoginInButton extends Component {
   getViewComponent = () => {
     if(this.props.iconSource){
       return (
-        <View style={this.props.buttonViewStyle}>
+        <View style={[this.props.buttonViewStyle, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
           <Image
             resizeMode={'contain'}
             style={[ {width: 30, height: 30}, ths.props.iconStyle]}
@@ -22,7 +22,7 @@ class LoginInButton extends Component {
     }
     else{
       return (
-        <View style={this.props.buttonViewStyle}>
+        <View style={[this.props.buttonViewStyle, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
           <Text style = {[this.props.buttonTextStyle, {backgroundColor: 'transparent'}]}>{this.props.children}</Text>
         </View>
       );
@@ -31,23 +31,21 @@ class LoginInButton extends Component {
 
   render() {
     return(
-      <TouchableHighLight
+      <TouchableHighlight
         underlayColor={'transparent'}
         activeOpacity={this.props.activeOpacity}
-        style={[this.props.touchableHighLightStyle, viewStyles.touchableHighLightStyle]}
+        style={[this.props.touchableHighlightStyle, viewStyles.touchableHighlightStyle]}
         onPress={this.props.buttonTapped}
       >
-        <View style={this.props.buttonViewStyle}>
-          <Text style = {[this.props.buttonTextStyle, {backgroundColor: 'transparent'}]}>{this.props.children}</Text>
-        </View>
-      </TouchableHighLight>
+        {this.getViewComponent()}
+      </TouchableHighlight>
     );
   }
 
 }
 
 const viewStyles = {
-  touchableHighLightStyle: {
+  touchableHighlightStyle: {
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -63,4 +61,4 @@ const textStyles = {
 
 };
 
-export default LoginInButton;
+export default LogInButton;

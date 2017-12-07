@@ -21,7 +21,7 @@ const colors = {
 const sizes = {
   buttonHeight: 45,
   pageFontSize: 12,
-  borderWidth: 0.8,
+  borderWidth: 1,
   borderRadius: 5
 }
 
@@ -32,6 +32,10 @@ export default class App extends Component {
     this.state = {
 
     }
+  }
+
+  buttonTapped = () => {
+    console.log("Button successfully tapped");
   }
 
   loginScreenComponent = () => {
@@ -52,6 +56,16 @@ export default class App extends Component {
             resizeMode={'contain'}
             source={require('./src/images/instagram-text-logo.png')}
           />
+
+          <LogInButton
+            buttonViewStyle={viewStyles.instagramLoginButtonView}
+            buttonTextStyle={textStyles.instagramButtonTextStyle}
+            buttonTapped={this.buttonTapped}
+            touchableHighlightStyle={viewStyles.instagramTouchableHighlightStyle}
+            activeOpacity={0.75}
+          >
+            Log In (via Instagram)
+          </LogInButton>
         </ScrollView>
 
       </ImageBackground>
@@ -65,7 +79,7 @@ export default class App extends Component {
   }
 }
 
-const viewStyles = ({
+const viewStyles = {
   container: {
     flex: 1,
     backgroundColor: 'transparent',
@@ -80,5 +94,25 @@ const viewStyles = ({
   },
   scrollViewStyle: {
     paddingTop: '30%'
+  },
+  instagramLoginButtonView: {
+    backgroundColor: 'transparent',
+    borderColor: colors.socialMediaButtonBorderColor,
+    borderWidth: sizes.borderWidth,
+    borderRadius: sizes.boredrRadius,
+    width: standardComponentWidth,
+    height: sizes.buttonHeight
+  },
+  instagramTouchableHighlightStyle: {
+    width: standardComponentWidth,
+    height: sizes.buttonHeight,
+    marginTop: 5
   }
-});
+};
+
+const textStyles = {
+  instagramButtonTextStyle: {
+    color: colors.text,
+    fontWeight: '500'
+  }
+};
