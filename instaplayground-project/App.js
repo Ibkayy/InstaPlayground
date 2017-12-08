@@ -53,26 +53,12 @@ export default class App extends Component {
   forgotLoginDetailsComponent = (normalText, boldText, url) => {
     return (
       <View style = {viewStyles.forgotLoginDetailsContainer}>
-        <Text style = {textStyles.forgotLoginDetails}>Forgot your login details?</Text>
+        <Text style = {textStyles.forgotLoginDetails}>{normalText}</Text>
         <TappableText
           textStyle = {[textStyles.forgotLoginDetails, textStyles.forgotLoginDetailsBold]}
           textTapped={ () => Linking.openURL(urls.forgotInstagramLogin)}
         >
           {boldText}
-        </TappableText>
-      </View>
-    );
-  }
-
-  signUpComponent = () => {
-    return (
-      <View style = {viewStyles.signUpContainer}>
-        <Text style = {textStyles.signUpDetails}>Do not have an account?</Text>
-        <TappableText
-          textStyle = {[textStyles.signUpDetails, textStyles.signUpDetailsBold]}
-          textTapped={ () => Linking.openURL(urls.instagramSignUp)}
-        >
-          Sign Up
         </TappableText>
       </View>
     );
@@ -92,6 +78,14 @@ export default class App extends Component {
         >
           Log In with Twitter
         </TappableText>
+      </View>
+    );
+  }
+
+  signupFooterComponent = () => {
+    return(
+      <View style = {viewStyles.signupFooterContainer}>
+          { this.forgotLoginDetailsComponent('Do not have an account?', 'Sign Up', urls.instagramSignUp) }
       </View>
     );
   }
@@ -139,10 +133,9 @@ export default class App extends Component {
           { this.forgotLoginDetailsComponent('Forgot your login details?', 'Get help signing in', urls.forgotInstagramLogin) }
           { this.orSeparatorComponent() }
           { this.loginWithTwitterComponent() }
-          { this.signUpComponent() }
 
         </ScrollView>
-
+          { this.signupFooterComponent() }
       </ImageBackground>
     );
   }
@@ -213,6 +206,18 @@ const viewStyles = {
     width: standardComponentWidth,
     height: sizes.buttonHeight,
     marginTop: 5
+  },
+  signupFooterContainer: {
+    flex: 0.25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.25)',
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 5.5},
+    width: '100%'
   },
   twitterContainer: {
     flexDirection: 'row',
