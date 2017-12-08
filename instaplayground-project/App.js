@@ -50,7 +50,7 @@ export default class App extends Component {
     console.log("Button successfully tapped");
   }
 
-  forgotLoginDetailsComponent = () => {
+  forgotLoginDetailsComponent = (normalText, boldText, url) => {
     return (
       <View style = {viewStyles.forgotLoginDetailsContainer}>
         <Text style = {textStyles.forgotLoginDetails}>Forgot your login details?</Text>
@@ -58,7 +58,7 @@ export default class App extends Component {
           textStyle = {[textStyles.forgotLoginDetails, textStyles.forgotLoginDetailsBold]}
           textTapped={ () => Linking.openURL(urls.forgotInstagramLogin)}
         >
-          Get help signing in
+          {boldText}
         </TappableText>
       </View>
     );
@@ -136,7 +136,7 @@ export default class App extends Component {
             acebook
           </LogInButton>
 
-          { this.forgotLoginDetailsComponent() }
+          { this.forgotLoginDetailsComponent('Forgot your login details?', 'Get help signing in', urls.forgotInstagramLogin) }
           { this.orSeparatorComponent() }
           { this.loginWithTwitterComponent() }
           { this.signUpComponent() }
